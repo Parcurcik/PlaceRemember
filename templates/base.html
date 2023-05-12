@@ -1,39 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
 {% load static %}
 {% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}Places Remember{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
 </head>
 <body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="/">Places Remember</a>
-        <div class=" navbar-collapse" id="navbarResponsive">
-        </div>
-    </div>
-</nav>
+
 
 {% block content %}
 {% endblock %}
 
-<!-- Footer-->
+
 <footer class="footer text-center">
     <div class="container">
         <div class="row">
-
-            <!-- Footer Social Icons-->
             <div class="col-lg-4 mb-5 mb-lg-0 mx-auto text-center">
                 <h4 class="text-uppercase mb-4">Контакты</h4>
                 <a class="btn btn-outline-light btn-social mx-1" href="https://t.me/parcurcik"><i
@@ -43,19 +30,16 @@
                 <a class="btn btn-outline-light btn-social mx-1" href="https://vk.com/parcurcik"><i
                         class="fab fa-fw fa-vk"></i></a>
             </div>
-
-
         </div>
     </div>
 </footer>
-<!-- Copyright Section-->
+
 <div class="copyright py-4 text-center text-white">
     <div class="container"><small>&copy; {% now "Y" %} Pavel Bezborodov</small></div>
 </div>
 
-<!-- Bootstrap core JS-->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
 {% block script %}
 {% endblock %}
 </body>

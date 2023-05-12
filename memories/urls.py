@@ -5,10 +5,8 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.index),
     path('home/', views.home),
-    path('vk_callback/', views.vk_callback, name='vk_callback'),
-    path('google_callback/', views.google_callback, name='google_callback'),
+    path('add_memory/', views.create_memory, name='create_memory'),
+    path('delete_memory/<int:memory_id>/', views.delete_memory, name='delete_memory'),
     path('logout/', views.logout, name='logout'),
 
 ]
-
-

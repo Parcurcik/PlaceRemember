@@ -3,14 +3,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
 SECRET_KEY = 'django-insecure-)jguq_%lu=28sn_yn%#38t2#0#4ci9f#h4-#n7a#wjk&=h)_wm'
 
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,9 +33,7 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = 'nzZL6MDf36V3yqPmzGG8'
 
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_REDIRECT_URL = '/google_callback'
-SOCIAL_AUTH_VK_OAUTH2_LOGIN_REDIRECT_URL = '/vk_callback'
-
+LOGIN_REDIRECT_URL = '/home'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,16 +69,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'impressions.wsgi.application'
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -100,8 +91,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -110,14 +99,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

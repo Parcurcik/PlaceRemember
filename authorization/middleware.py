@@ -6,7 +6,7 @@ class AuthRequiredMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.user.is_authenticated and request.path == '/home/':
+        if not request.user.is_authenticated and request.path == '/home/' or request.path == '/add_memory/':
             messages.error(request, 'Пожалуйста, авторизуйтесь')
             return redirect('/')
         response = self.get_response(request)

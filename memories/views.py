@@ -1,9 +1,10 @@
 from django.contrib import auth
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from social_django.models import UserSocialAuth
 from django.contrib.auth.decorators import login_required
 from authorization.get_profile import UserInfoGetter
+from .forms import *
 
 
 def index(request):
@@ -11,32 +12,60 @@ def index(request):
 
 
 @login_required
+def delete_memory(request, memory_id):
+    memory = get_object_or_404(Memory, pk=memory_id)
+    if memory.user != request.user:
+        return redirect(home)
+    memory.delete()
+    return redirect(home)
+
+
+@login_required
 def home(request):
-    return render(request, 'home.html')
+    user_profile = UserSocialAuth.objects.get(user=request.user)
+    access_token = user_profile.access_token
+    userinfo_getter = UserInfoGetter(access_token)
+
+    if user_profile.provider == 'vk-oauth2':
+        pers_id, first_name, last_name, photo_url = userinfo_getter.get_vk_info()
+    elif user_profile.provider == 'google-oauth2':
+        pers_id, first_name, last_name, photo_url = userinfo_getter.get_google_info()
+    else:
+        return HttpResponse('Авторизации нет')
+
+    memories = Memory.objects.filter(user=request.user)
+
+    context = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'photo_url': photo_url,
+        'memories': memories,
+    }
+    return render(request, 'home.html', context)
 
 
-def vk_callback(request):
-    try:
-        vk_user = UserSocialAuth.objects.get(provider='vk-oauth2', user=request.user)
-        vk_profile = vk_user.extra_data
-        user_info = UserInfoGetter(vk_profile['access_token'])
-        name, last_name, photo = user_info.get_vk_info()
-        print(name, last_name, photo, sep='\n')
-    except UserSocialAuth.DoesNotExist:
-        pass
-    return redirect(home)
+@login_required
+def create_memory(request):
+    if request.method == 'POST':
+        form = MemoryForm(request.POST)
+        if form.is_valid():
+            memory = form.save(commit=False)
+            memory.user = request.user
+            latitude = request.POST.get('latitude')
+            longitude = request.POST.get('longitude')
 
+            if latitude is None or longitude is None or latitude == '' or longitude == '':
+                error_message = 'Ошибка: не выбрана точка на карте.'
+                return render(request, 'сreate_memory.html', {'form': form, 'error_message': error_message})
 
-def google_callback(request):
-    try:
-        user_social_auth = UserSocialAuth.objects.get(provider='google-oauth2', user=request.user)
-        user_info = user_social_auth.extra_data
-        user_info = UserInfoGetter(user_info['access_token'])
-        name, last_name, photo = user_info.get_google_info()
-        print(name, last_name, photo, sep='\n')
-    except UserSocialAuth.DoesNotExist:
-        pass
-    return redirect(home)
+            memory.latitude = latitude
+            memory.longitude = longitude
+            memory.save()
+            return redirect(home)
+    else:
+        form = MemoryForm()
+
+    return render(request, 'сreate_memory.html', {'form': form})
 
 
 @login_required
