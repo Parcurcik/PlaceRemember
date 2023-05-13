@@ -5,7 +5,7 @@ from social_django.models import UserSocialAuth
 from django.contrib.auth.decorators import login_required
 from authorization.get_profile import UserInfoGetter
 
-from .forms import *
+from .forms import Memory, MemoryForm
 
 
 def index(request):

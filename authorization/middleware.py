@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.contrib import messages
 
 
@@ -12,4 +12,3 @@ class AuthRequiredMiddleware:
             return redirect('/')
         response = self.get_response(request)
         return response
-

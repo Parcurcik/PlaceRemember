@@ -6,5 +6,3 @@ urlpatterns = [
     path('', include('memories.urls')),
     path('', include('social_django.urls')),
 ]
-
-
