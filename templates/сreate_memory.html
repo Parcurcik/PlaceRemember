@@ -18,14 +18,19 @@
         <input type="hidden" id="id_latitude" name="latitude">
         <input type="hidden" id="id_longitude" name="longitude">
         <div id="map" class="memory-map"></div>
-        <button class="memory-form-button" type="submit">Сохранить</button>
+        <button id="save-button" class="memory-form-button" type="submit">Сохранить</button>
     </form>
 
     {% if error_message %}
         <p class="memory-error-message">{{ error_message }}</p>
     {% endif %}
 </div>
+<script>
+    document.querySelector('.memory-form').addEventListener('submit', function () {
 
+        document.getElementById('save-button').disabled = true;
+    });
+</script>
 <script src="{% static 'js/form.js' %}"></script>
 </body>
 </html>

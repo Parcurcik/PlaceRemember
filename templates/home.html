@@ -26,20 +26,20 @@
         </div>
     </nav>
 
-    <section class="page-section bg-primary text-white" id="about" style="min-height: 100vh;">
+    <section class="page-section bg-primary text-white" id="about" style="min-height: 100vh; margin-top: 60px;  ">
         <div class="container" style="margin-top: 20px;  padding: 50px 0; text-align: justify;">
             <h2 class="page-section-heading text-center text-uppercase text-white" style="padding-bottom: 20px;">
                 Воспоминания
             </h2>
             <a href="{% url 'create_memory' %}" class="btn btn-success btn-sm ml-auto"
-               style="position: absolute; top: 20vh; right: 20vh; background: rgb(44,62,80)">Добавить воспоминание</a>
+               style="position: absolute; top: 29vh; right: 13vh; background: rgb(44,62,80)">Добавить воспоминание</a>
 
             {% if memories %}
                 <div class="row">
 
 
                     {% for memory in memories %}
-                        <div class="col-lg-8 mx-auto" style="width: 1600px; padding-top: 20px; color: black;">
+                        <div class="col-lg-8 mx-auto" style="width: 1600px; padding-top: 40px; color: black;">
                             <div class="memory-item">
                                 <div class="row">
                                     <div class="location-name">{{ memory.memory_name }}</div>

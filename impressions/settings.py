@@ -35,6 +35,7 @@ SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 LOGIN_REDIRECT_URL = '/home'
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

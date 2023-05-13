@@ -12,13 +12,23 @@
                     <li class="nav-item-log">
                         <div class="nav-text">
                             <span style="color: white;">Войти с помощью:</span>
-                            <a href="{% url 'social:begin' 'vk-oauth2' %}" style="text-decoration: none">
-                                <img src="{% static 'images/vk.svg' %}" class="avatar-3" data-toggle="tooltip"
-                                     title="{% trans 'vk.com' %}">
-                            </a>
-                            <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-decoration: none">
-                                <img src="{% static 'images/google.svg' %}" title="{% trans 'google.com' %}">
-                            </a>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'home' %}" style="text-decoration: none">
+                                    <img src="{% static 'images/vk.svg' %}" class="avatar-3" data-toggle="tooltip"
+                                         title="{% trans 'vk.com' %}">
+                                </a>
+                                <a href="{% url 'home' %}" style="text-decoration: none">
+                                    <img src="{% static 'images/google.svg' %}" title="{% trans 'google.com' %}">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'social:begin' 'vk-oauth2' %}" style="text-decoration: none">
+                                    <img src="{% static 'images/vk.svg' %}" class="avatar-3" data-toggle="tooltip"
+                                         title="{% trans 'vk.com' %}">
+                                </a>
+                                <a href="{% url 'social:begin' 'google-oauth2' %}" style="text-decoration: none">
+                                    <img src="{% static 'images/google.svg' %}" title="{% trans 'google.com' %}">
+                                </a>
+                            {% endif %}
                         </div>
                     </li>
                 </ul>

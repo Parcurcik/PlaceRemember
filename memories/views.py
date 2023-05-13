@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from social_django.models import UserSocialAuth
 from django.contrib.auth.decorators import login_required
 from authorization.get_profile import UserInfoGetter
+
 from .forms import *
 
 
@@ -55,7 +56,7 @@ def create_memory(request):
             longitude = request.POST.get('longitude')
 
             if latitude is None or longitude is None or latitude == '' or longitude == '':
-                error_message = 'Ошибка: не выбрана точка на карте.'
+                error_message = 'Выберите точку на карте.'
                 return render(request, 'сreate_memory.html', {'form': form, 'error_message': error_message})
 
             memory.latitude = latitude
