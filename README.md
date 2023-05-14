@@ -10,7 +10,6 @@
     SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=
     SOCIAL_AUTH_VK_OAUTH2_KEY=
     SOCIAL_AUTH_VK_OAUTH2_SECRET=
-    SECRET_KEY =
 
 ## Локальный запуск через виртуальное окружение
 
