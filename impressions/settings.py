@@ -1,9 +1,11 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-)jguq_%lu=28sn_yn%#38t2#0#4ci9f#h4-#n7a#wjk&=h)_wm'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
@@ -25,16 +27,15 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1078716205901-6dpr67ckk2r70dto88q7e4cl5j63dd3v.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '51639630'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'nzZL6MDf36V3yqPmzGG8'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_VK_OAUTH2_SECRET')
 
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 LOGIN_REDIRECT_URL = '/home'
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
