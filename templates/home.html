@@ -3,8 +3,9 @@
 {% block content %}
     {% load static %}
     {% load i18n %}
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=05d82726-f913-4790-9e87-5a9e4206e48f&lang=ru_RU"
+    <script src="https://api-maps.yandex.ru/2.1/?apikey={{ YANDEX_MAPS_API_KEY }}&lang=ru_RU"
             type="text/javascript"></script>
+
 
 
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
