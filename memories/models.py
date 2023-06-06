@@ -8,3 +8,7 @@ class Memory(models.Model):
     memory_comment = models.TextField()
     latitude = models.FloatField()
     longitude = models.FloatField()
+
+    class Meta:
+        def __str__(self):
+            return self.memory_name
