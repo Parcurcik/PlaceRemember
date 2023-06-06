@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from social_django.models import UserSocialAuth
 from django.contrib.auth.decorators import login_required
 from authorization.get_profile import UserInfoGetter
+from authorization.decorators import login_required_with_message
 
 from .forms import Memory, MemoryForm
 
@@ -12,7 +13,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-@login_required
+@login_required_with_message
 def delete_memory(request, memory_id):
     memory = get_object_or_404(Memory, pk=memory_id)
     if memory.user != request.user:
@@ -21,7 +22,7 @@ def delete_memory(request, memory_id):
     return redirect(home)
 
 
-@login_required
+@login_required_with_message
 def home(request):
     user_profile = UserSocialAuth.objects.get(user=request.user)
     access_token = user_profile.access_token
@@ -45,7 +46,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-@login_required
+@login_required_with_message
 def create_memory(request):
     if request.method == 'POST':
         form = MemoryForm(request.POST)
@@ -69,7 +70,7 @@ def create_memory(request):
     return render(request, 'сreate_memory.html', {'form': form})
 
 
-@login_required
+@login_required_with_message
 def logout(request):
     auth.logout(request)
     return redirect(index)
